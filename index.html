@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MAQUINA TRAGAMONEDAS</title>
+    <style>
+        /* Estilos para el juego de máquina tragamonedas */
+        .slot-machine {
+            text-align: center;
+        }
+
+        .reel {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .reel img {
+            width: 160px;
+            height: 150px;
+        }
+
+        #result {
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>MAQUINA TRAGAMONEDAS</h1>
+    </center>
+
+    <div class="slot-machine">
+        <div class="reel" id="reel1"><img src="imagenes/imagen6.jpg" style="border-style: solid;border-width:5px; color:#970692 "></div>
+        <div class="reel" id="reel2"><img src="imagenes/imagen6.jpg" style="border-style: solid;border-width:5px; color:#970692 "></div>
+        <div class="reel" id="reel3"><img src="imagenes/imagen6.jpg" style="border-style: solid;border-width:5px; color:#970692 "></div>
+    </div>
+
+    <center>
+        <br>
+        <input type="button" class="btn btn-info" value="¡A JUGAR!" onclick="jugar()"><br>
+        <p id="result" style="color:rgb(24, 36, 212)"></p>
+    </center>
+
+    <script>
+        // Array de imágenes para la máquina tragamonedas
+        var imagenes = ["imagenes/imagen1.jpg", "imagenes/imagen2.jpg", "imagenes/imagen3.jpg", "imagenes/imagen4.jpg", "imagenes/imagen5.jpg"];
+
+        function generarNumeroAleatorio(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function jugar() {
+            var resultElement = document.getElementById("result");
+
+            var reel1 = document.getElementById("reel1");
+            var reel2 = document.getElementById("reel2");
+            var reel3 = document.getElementById("reel3");
+
+            var resultado1 = generarNumeroAleatorio(0, imagenes.length - 1);
+            var resultado2 = generarNumeroAleatorio(0, imagenes.length - 1);
+            var resultado3 = generarNumeroAleatorio(0, imagenes.length - 1);
+
+            reel1.innerHTML = `<img src="${imagenes[resultado1]}" style="border-style: solid;border-width:5px; color:#970692">`;
+            reel2.innerHTML = `<img src="${imagenes[resultado2]}" style="border-style: solid;border-width:5px; color:#970692">`;
+            reel3.innerHTML = `<img src="${imagenes[resultado3]}" style="border-style: solid;border-width:5px; color:#970692">`;
+
+            
+            if (resultado1 === resultado2 && resultado2 === resultado3) {
+                resultElement.textContent = "¡GANASTE!";
+            } else {
+                resultElement.textContent = "¡Inténtalo de nuevo!";
+            }
+        }
+    </script>
+</body>
+</html>
